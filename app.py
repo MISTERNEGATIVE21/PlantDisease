@@ -78,10 +78,13 @@ def predict(image, model_choice):
         return f"Error processing image: {str(e)}"
 
 # Create examples directory if it doesn't exist
-os.makedirs('examples', exist_ok=True)
-
-# Gradio interface
 model_choices = list(available_models.keys()) if available_models else ["No models available"]
+
+# Only add examples if valid example images exist
+example_path = "examples/healthy_leaf.jpg"
+examples = None
+if os.path.exists(example_path):
+    examples = [[example_path, model_choices[0]]]
 
 iface = gr.Interface(
     fn=predict,
@@ -92,9 +95,7 @@ iface = gr.Interface(
     outputs=gr.Textbox(label="Predictions"),
     title="Plant Disease Detection",
     description="Upload a plant image and select a model to detect plant diseases. The system will show the top 3 predictions.",
-    examples=[
-        ["examples/healthy_leaf.jpg", model_choices[0]] if os.path.exists("examples/healthy_leaf.jpg") else None
-    ]
+    examples=examples
 )
 
 if __name__ == "__main__":
