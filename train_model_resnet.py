@@ -13,7 +13,7 @@ from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 IMAGE_DIR = 'images/images'
 IMG_SIZE = (224, 224)  # ResNet50 preferred size
 BATCH_SIZE = 32
-EPOCHS = 20
+EPOCHS = 40  # Increased epochs for better training
 LEARNING_RATE = 0.001
 
 # Print class information
@@ -78,11 +78,17 @@ inputs = tf.keras.Input(shape=(*IMG_SIZE, 3))
 x = base_model(inputs, training=False)
 x = GlobalAveragePooling2D()(x)
 x = BatchNormalization()(x)
-x = Dense(512, activation='relu')(x)
+x = Dense(1024, activation='relu')(x)
 x = Dropout(0.5)(x)
+x = BatchNormalization()(x)
+x = Dense(512, activation='relu')(x)
+x = Dropout(0.4)(x)
 x = BatchNormalization()(x)
 x = Dense(256, activation='relu')(x)
 x = Dropout(0.3)(x)
+x = BatchNormalization()(x)
+x = Dense(128, activation='relu')(x)
+x = Dropout(0.2)(x)
 outputs = Dense(num_classes, activation='softmax')(x)
 model = Model(inputs, outputs)
 
