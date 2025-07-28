@@ -125,3 +125,9 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Credits
+
+This repository uses the [Cotton Dataset for Multi-Disease Classification](https://www.kaggle.com/datasets/vaishalibhujadesfdc/cotton-dataset-for-multi-disease-classification) by Vaishali BhujadeSFDC. The dataset contains real field images of cotton plants, collected from [ICAR-CICR, Nagpur](https://cicr.org.in/) and this research centre.
+
+Special thanks to Vaishali BhujadeSFDC and the [ICAR-CICR, Nagpur research centre](https://cicr.org.in/) for providing this valuable resource.
